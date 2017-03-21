@@ -23,11 +23,10 @@ def main():
         print("Run with kconf_printer.py CONFIG_some_config")
         exit(1)
 
-    if not sys.argv[1][0:len(magic_word)] == magic_word:
-        print("Run with kconf_printer.py CONFIG_some_config")
-        exit(1)
-
-    rconf = sys.argv[1][len(magic_word):]
+    if sys.argv[1][0:len(magic_word)] == magic_word:
+        rconf = sys.argv[1][len(magic_word):]
+    else:
+        rconf = sys.argv[1]
 
     try:
         r = requests.get("%s%s.html" %(cateee_url, rconf))
