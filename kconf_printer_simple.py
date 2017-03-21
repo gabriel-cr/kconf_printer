@@ -5,7 +5,7 @@ from html.parser import HTMLParser
 magic_word = "CONFIG_"
 cateee_url = "https://cateee.net/lkddb/web-lkddb/"
 
-class MyHTMLParser(HTMLParser):
+class dumb_parser(HTMLParser):
     do_print = False
 
     def handle_data(self, data):
@@ -31,17 +31,8 @@ def main():
 
     try:
         r = requests.get("%s%s.html" %(cateee_url, rconf))
-        parser = MyHTMLParser()
+        parser = dumb_parser()
         parser.feed(r.content.decode('UTF-8'))
-        exit(0)
-        r = bf.find_all()
-        
-        for i in range(0, len(r)):
-            if r[i].name == "h2" and r[i].get_text() in headers:
-                print('\n------------')
-                print(r[i].get_text())
-                print('============')
-                print(remove_ads(r[i + headers[r[i].get_text()]].get_text()))
 
     except Exception as ex:
         print(ex)
